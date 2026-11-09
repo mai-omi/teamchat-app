@@ -2,48 +2,18 @@
 
 namespace App\Http\Requests\Auth;
 
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
+use Laravel\Fortify\Http\Requests\LoginRequest as FortifyLoginRequest;
 
-class LoginRequest extends FormRequest
+class LoginRequest extends FortifyLoginRequest
 {
-    public function authorize(): bool
-    {
-        return true;
-    }
-
     /**
+     * 空のメール・パスワードも通常の認証失敗として扱う（screens.md §4：
+     * 認証失敗は項目ごとに分けず1文だけ表示する）ため、項目ごとの必須チェックはしない。
+     *
      * @return array<string, mixed>
      */
     public function rules(): array
     {
-        return [
-            'email' => ['required'],
-            'password' => ['required'],
-        ];
-    }
-
-    /**
-     * @return array<string, string>
-     */
-    public function messages(): array
-    {
-        return [
-            'email.required' => 'メールアドレスまたはパスワードが正しくありません',
-            'password.required' => 'メールアドレスまたはパスワードが正しくありません',
-        ];
-    }
-
-    /**
-     * メールアドレスとパスワードで認証を試みる。失敗したら単一のエラーメッセージで止める。
-     */
-    public function authenticate(): void
-    {
-        if (! Auth::attempt($this->only('email', 'password'))) {
-            throw ValidationException::withMessages([
-                'email' => 'メールアドレスまたはパスワードが正しくありません',
-            ]);
-        }
+        return [];
     }
 }
