@@ -31,5 +31,12 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
     Route::get('/channels', [ChannelController::class, 'index'])->name('channels.index');
+    Route::get('/channels/create', [ChannelController::class, 'create'])->name('channels.create');
+    Route::post('/channels', [ChannelController::class, 'store'])->name('channels.store');
+    Route::get('/channels/{channel}', [ChannelController::class, 'show'])->name('channels.show')->middleware('can:view,channel');
+    Route::get('/channels/{channel}/edit', [ChannelController::class, 'edit'])->name('channels.edit')->middleware('can:view,channel', 'can:update,channel');
+    Route::patch('/channels/{channel}', [ChannelController::class, 'update'])->name('channels.update')->middleware('can:view,channel', 'can:update,channel');
+    Route::delete('/channels/{channel}', [ChannelController::class, 'destroy'])->name('channels.destroy')->middleware('can:view,channel', 'can:delete,channel');
 });

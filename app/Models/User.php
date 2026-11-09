@@ -38,4 +38,20 @@ class User extends Authenticatable
     protected $casts = [
         'password' => 'hashed',
     ];
+
+    /**
+     * 自分が作成したチャンネル（編集・削除・メンバー管理の権限者。交代なし）。
+     */
+    public function createdChannels(): HasMany
+    {
+        return $this->hasMany(Channel::class, 'created_by');
+    }
+
+    /**
+     * 自分がメンバーであるプライベートチャンネル。
+     */
+    public function channels(): BelongsToMany
+    {
+        return $this->belongsToMany(Channel::class)->withTimestamps();
+    }
 }
