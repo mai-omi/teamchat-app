@@ -15,7 +15,9 @@
       "Bash(./vendor/bin/sail test *)",
       "Bash(sail test *)",
       "Bash(./vendor/bin/sail artisan test *)",
-      "Bash(sail artisan test *)"
+      "Bash(sail artisan test *)",
+      "Bash(./vendor/bin/sail pint *)",
+      "Bash(sail pint *)"
     ]
   },
   "hooks": {
@@ -26,6 +28,10 @@
           {
             "type": "command",
             "command": "test -x vendor/bin/sail || exit 0; ./vendor/bin/sail artisan test >&2 || exit 2"
+          },
+          {
+            "type": "command",
+            "command": "test -x vendor/bin/sail || exit 0; ./vendor/bin/sail pint >&2 || exit 2"
           }
         ]
       }

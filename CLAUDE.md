@@ -56,6 +56,23 @@ Standard RESTful routes with route-model binding on `{channel}`/`{message}`/`{us
 - 一覧表示のクエリには `with()` による Eager Loading が付いているかを確認する（N+1防止）。チャンネル一覧・メッセージ一覧・検索結果など、一覧系の画面・APIで特に注意。
 - Follow the user's instructions precisely, and within that scope act autonomously: gather the necessary context and complete the requested work end-to-end in this run, asking questions only when essential information is missing or the instructions are critically ambiguous.
 
+## 守ってほしい書き方
+
+`docs/design/` の決めごとのうち、**実装を始めると気づかずに破りやすいもの**だけを挙げる。理由と詳細は在りか側にあり、ここには写さない。`/review-diff` は差分が届いたあとに効くスキルなので、ここは書く前から効かせる決めとして置く。
+
+| 決め | 在りか |
+|:--|:--|
+| 見られないプライベートに関わる失敗は 403 ではなく 404 | `docs/design/behavior.md` §3-0 |
+| `messages` の削除は `deleted_at` のみ。標準の `SoftDeletes` トレイトは使わない | `docs/design/data.md` §0・§2-4 |
+| チャンネル名の一意判定は DB の UNIQUE を使わず、アプリ側（可視範囲内）で行う | `docs/design/data.md` §0・§2-2 |
+| チャンネルの `visibility` は作成後に変更不可 | `docs/design/data.md` §2-2 |
+| チャンネル作成者に他人のメッセージへの特別な権利はない。メンバー管理でも作成者自身は外せない | `docs/design/data.md` §2-3、`docs/design/permissions-api.md` 権限マトリクス注d・注e |
+| 返信件数のカウント方針は画面と公開APIで意図的に異なる | `docs/design/permissions-api.md` §3-2 |
+| 公開APIはプライベートチャンネルの情報を名前も含めて一切返さない | `docs/design/permissions-api.md` §3 |
+| 公開APIの404は「存在しない」と「プライベート」で同一レスポンス | `docs/design/permissions-api.md` §3-3 |
+| ルート名・コントローラのアクション名は固定。スレッド返信の編集・削除は専用ルートを作らず通常のメッセージルートを使う | `docs/design/permissions-api.md` §2 |
+| 入力の空判定は前後の空白・改行を除去してから行う | `docs/design/behavior.md` §3-1 |
+
 ## プルリクエスト
 
 イシュー1件に1本のブランチを切り、プルリクエストで受け取る。
