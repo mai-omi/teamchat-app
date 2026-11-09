@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>questions.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="確認事項リスト">確認事項リスト</h1>
+<p>仕様書に書かれておらず、モックアップだけでは決めきれないところを、<strong>こちらの想定を添えて</strong>挙げます。
+「このまま進めてよいか」「違う場合はどうするか」を、まとめて教えてください（spec 6章「まとめて回答します」）。</p>
+<ul>
+<li>回答は下の「回答・決定ログ」に追記していきます。</li>
+<li>design-guide で「実装の判断」と明記されている点など、こちらで決めてよいものは末尾の「自分で決めたこと」に分けています（確認は不要です）。</li>
+</ul>
+<hr>
+<h2 id="確認事項q-01">確認事項（Q-01〜）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">ID</th>
+<th style="text-align:left">確認したいこと</th>
+<th style="text-align:left">根拠・背景</th>
+<th style="text-align:left">状態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Q-01</td>
+<td style="text-align:left">サイドバーとチャンネル一覧には、<strong>公開チャンネルすべて</strong>と、<strong>自分がメンバーのプライベートチャンネルだけ</strong>を出す想定です。自分がメンバーでないプライベートチャンネルは名前も出さない、ということでよいですか。</td>
+<td style="text-align:left"><code>channel-show.html</code> 等でメンバーの佐藤にだけ「採用プロジェクト」が出ている ／ spec 3-2・3-3</td>
+<td style="text-align:left">未回答</td>
+</tr>
+<tr>
+<td style="text-align:left">Q-02</td>
+<td style="text-align:left">チャンネルの<strong>公開範囲（公開／プライベート）は、作成後は変更できない</strong>想定です。これでよいですか。</td>
+<td style="text-align:left"><code>channel-edit.html</code> の注記「公開範囲はあとから変更できません」</td>
+<td style="text-align:left">未回答</td>
+</tr>
+<tr>
+<td style="text-align:left">Q-03</td>
+<td style="text-align:left">プライベートチャンネルから<strong>メンバーを外しても、その人が過去に書いたメッセージは残す</strong>想定です。また、外された人はその後、そのチャンネルを<strong>一切見られなくなる</strong>（過去分も含む）想定です。これでよいですか。</td>
+<td style="text-align:left">spec 3-3（追加・削除）／ spec 3-4（削除は跡を残す方針）</td>
+<td style="text-align:left">未回答</td>
+</tr>
+<tr>
+<td style="text-align:left">Q-04</td>
+<td style="text-align:left">検索の対象は<strong>メッセージ本文のみ</strong>で、チャンネル名・説明・投稿者名は対象にしない想定です。これでよいですか。</td>
+<td style="text-align:left">spec 3-6「メッセージを探せる」 ／ <code>search.html</code></td>
+<td style="text-align:left">未回答</td>
+</tr>
+<tr>
+<td style="text-align:left">Q-05</td>
+<td style="text-align:left">「このメッセージは削除されました」になったメッセージは、<strong>検索結果には出さない</strong>想定です。これでよいですか。</td>
+<td style="text-align:left">spec 3-4・3-6 ／ design-guide §4</td>
+<td style="text-align:left">未回答</td>
+</tr>
+<tr>
+<td style="text-align:left">Q-06</td>
+<td style="text-align:left">返信（スレッド）は<strong>メッセージに対して1段だけ</strong>で、返信にさらに返信（入れ子）は付けられない想定です。これでよいですか。</td>
+<td style="text-align:left">spec 3-5「元のメッセージにぶら下がる」 ／ <code>thread.html</code>（1段のみ）</td>
+<td style="text-align:left">未回答</td>
+</tr>
+<tr>
+<td style="text-align:left">Q-07</td>
+<td style="text-align:left">メッセージの編集・削除は<strong>本人だけ</strong>で、<strong>チャンネルの作成者でも他人のメッセージは編集・削除できない</strong>想定です（モデレーション機能は持たせない）。これでよいですか。</td>
+<td style="text-align:left">spec 3-4「他の人が書いたメッセージは直せません」 ／ spec 4（全体管理はスコープ外）</td>
+<td style="text-align:left">未回答</td>
+</tr>
+<tr>
+<td style="text-align:left">Q-08</td>
+<td style="text-align:left">同じ「削除」でも、相手によって決まりが変わります。<strong>メッセージを1件</strong>消したときは、確認なしで即時に消え、その場所に「このメッセージは削除されました」が残ります（本文は消えますが、投稿者・日時・返信件数は残り、前後のやり取りを追えます）。いっぽう<strong>チャンネルごと</strong>消したときは、チャンネル名の入力で確認したうえで、中のメッセージ・返信も含めて跡形なく消え、元に戻せません。チャンネルごと消す場合は、文脈を残す相手（前後のメッセージ）自体が無くなるため跡を残さない、という想定です。この2つの違いでよいですか。</td>
+<td style="text-align:left">spec 3-4（1件削除は跡を残す／その理由）／ <code>channel-edit.html</code>（チャンネル削除は「メッセージと返信もすべて削除され、元に戻せません」＋名前入力の確認）／ 関連: Q-18</td>
+<td style="text-align:left">未回答</td>
+</tr>
+<tr>
+<td style="text-align:left">Q-09</td>
+<td style="text-align:left">新規登録では、入力ミス防止のため**「パスワード（確認用）」を設け、一致を検証する**想定です（spec 3-1 には記載がありませんが、モックにあります）。これでよいですか。</td>
+<td style="text-align:left"><code>register.html</code> ／ spec 3-1</td>
+<td style="text-align:left">未回答</td>
+</tr>
+<tr>
+<td style="text-align:left">Q-10</td>
+<td style="text-align:left"><strong>メールアドレスはログインに使うため一意（重複登録は不可）</strong>、<strong>表示名は重複を許す</strong>想定です。これでよいですか。</td>
+<td style="text-align:left">spec 3-1（メールでログイン）／ spec 5-4（同姓同名を想定しない内容）</td>
+<td style="text-align:left">未回答</td>
+</tr>
+<tr>
+<td style="text-align:left">Q-11</td>
+<td style="text-align:left">ログイン後に最初に表示する画面は**チャンネル一覧（<code>channels</code>）**にする想定です。これでよいですか（特定チャンネルを開くなど別の入口が良ければ教えてください）。</td>
+<td style="text-align:left">spec に記載なし ／ <code>index.html</code> はカタログのみ</td>
+<td style="text-align:left">未回答</td>
+</tr>
+<tr>
+<td style="text-align:left">Q-12</td>
+<td style="text-align:left">チャンネル内のメッセージは<strong>古い順に全件表示</strong>し、ページング（続きを読み込む等）は行わない想定です。これでよいですか。</td>
+<td style="text-align:left">spec 3-4 ／ spec 4（自動表示はスコープ外だがページングの指定はなし）</td>
+<td style="text-align:left">未回答</td>
+</tr>
+<tr>
+<td style="text-align:left">Q-13</td>
+<td style="text-align:left">メンバー追加は、<strong>メールアドレスまたは表示名の完全一致</strong>で、既に登録済みの社員の中から選ぶ想定です（未登録の人の招待は行わない）。これでよいですか。</td>
+<td style="text-align:left"><code>members.html</code>「表示名またはメールアドレスで探す」／ spec 3-3</td>
+<td style="text-align:left">未回答</td>
+</tr>
+<tr>
+<td style="text-align:left">Q-14</td>
+<td style="text-align:left">公開APIは<strong>JSONを返す読み取り専用</strong>とし、<strong>メールアドレスなど個人を特定しうる情報は含めず</strong>、投稿者は表示名のみ・日時付きで返す想定です。削除済みメッセージは本文を返さず「削除されました」相当の扱いにします。これでよいですか。</td>
+<td style="text-align:left">spec 3-7 ／ spec 3-4</td>
+<td style="text-align:left">未回答</td>
+</tr>
+<tr>
+<td style="text-align:left">Q-15</td>
+<td style="text-align:left">公開APIのメッセージ一覧は<strong>チャンネル直下のメッセージを返し、スレッドの返信は本文としては含めず、返信件数だけ</strong>を付ける想定です。これでよいですか（返信本文まで必要なら教えてください）。</td>
+<td style="text-align:left">spec 3-7 ／ spec 3-5</td>
+<td style="text-align:left">未回答</td>
+</tr>
+<tr>
+<td style="text-align:left">Q-16</td>
+<td style="text-align:left">返信件数には、<strong>削除された返信も含めて数える</strong>想定です（削除は跡を残す方針に合わせるため）。これでよいですか。</td>
+<td style="text-align:left">spec 3-4・3-5 ／ design-guide §4「返信件数の表示も消さない」</td>
+<td style="text-align:left">未回答</td>
+</tr>
+<tr>
+<td style="text-align:left">Q-17</td>
+<td style="text-align:left"><strong>退会（アカウント削除）・プロフィール変更・パスワード再設定は今回作らない</strong>想定です（spec に記載がないため）。これでよいですか。</td>
+<td style="text-align:left">spec に記載なし ／ spec 4（最小構成の方針）</td>
+<td style="text-align:left">未回答</td>
+</tr>
+<tr>
+<td style="text-align:left">Q-18</td>
+<td style="text-align:left">消したメッセージの<strong>本文を、データとしては残さない</strong>想定です。削除時に本文は消し（または空にし）、行だけを「削除済み」の印とともに残して、投稿者・日時・返信・返信件数は保持します（＝削除後は本文を元に戻せない）。これでよいですか。それとも、あとで復元・監査できるよう<strong>本文も保持</strong>しておきたいですか。</td>
+<td style="text-align:left">spec 3-4 は画面に「このメッセージは削除されました」を残すとだけ指定。データとしてどう持つかは未指定</td>
+<td style="text-align:left">未回答</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="回答決定ログ">回答・決定ログ</h2>
+<p>クライアントからの回答が返ってきたら、ここに <code>Q-xx：（回答）</code> の形で追記し、上の表の「状態」も更新します。</p>
+<p>（まだ回答はありません）</p>
+<hr>
+<h2 id="自分で決めたこと確認不要">自分で決めたこと（確認不要）</h2>
+<p>spec・design-guide が「実装の判断」と明記している点などを、こちらで決めたものです。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">決めたこと</th>
+<th style="text-align:left">内容</th>
+<th style="text-align:left">根拠</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">文字数カウンタ</td>
+<td style="text-align:left">入力に追随する動的表示（<code>248 / 1,000 文字</code>、超過は赤）にする</td>
+<td style="text-align:left">design-guide §4「どちらにするかは実装の判断」／ モックの表記 <code>0 / 1,000 文字</code></td>
+</tr>
+<tr>
+<td style="text-align:left">JavaScriptの使用</td>
+<td style="text-align:left">スレッドパネルの開閉・メッセージの編集中切り替え・文字数カウンタなどに最小限だけ使う</td>
+<td style="text-align:left"><code>mockup/README.md</code>・design-guide §5「使うかどうかは設計の判断」</td>
+</tr>
+<tr>
+<td style="text-align:left">日付の区切り表示</td>
+<td style="text-align:left">メッセージ一覧に日付の区切り（例：2026年8月17日（月））を入れる</td>
+<td style="text-align:left"><code>channel-show.html</code> の <code>day-sep</code></td>
+</tr>
+<tr>
+<td style="text-align:left">アバター表示</td>
+<td style="text-align:left">表示名の先頭文字＋人ごとに固定した背景色（design-guide 指定の4色）で表示する</td>
+<td style="text-align:left">design-guide §1</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>
